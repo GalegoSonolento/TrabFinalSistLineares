@@ -2,10 +2,10 @@ package util;
 
 public class Pessoa {
     private String code, nome, sexo;
-    private Integer idade;
+    private int idade;
     private double peso, altura;
 
-    public Pessoa(String code, String nome, String sexo, Integer idade, double peso, double altura) {
+    public Pessoa(String code, String nome, String sexo, int idade, double peso, double altura) {
         this.code = code;
         this.nome = nome;
         this.sexo = sexo;
