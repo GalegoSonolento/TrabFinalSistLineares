@@ -24,13 +24,13 @@ public class Funcional {
                 opcao = -1;
             }
             if (opcao == 1){
-                System.out.println("mama");
                 inserirPessoa();
                 System.out.println("Inserido!");
                 waitTime();
             }
             else if (opcao == 2) {
                 System.out.println("opcao 2");
+                calculaIMC();
                 waitTime();
             }
             else if (opcao == 3) {
@@ -56,6 +56,10 @@ public class Funcional {
         } while (true);
     }
 
+    private void calculaIMC() {
+
+    }
+
     private void waitTime(){
         try{
             Thread.sleep(1000);
@@ -74,10 +78,9 @@ public class Funcional {
 
         System.out.println("Sexo [M/F]: ");
         String sexo = scanner.next();
-        while (true){
+        while (!sexo.equalsIgnoreCase("m") && !sexo.equalsIgnoreCase("f")) {
             System.out.println("Input de sexo inválido! Tente novamente: ");
             sexo = scanner.next();
-            if (sexo.equalsIgnoreCase("m") || sexo.equalsIgnoreCase("f")) break;
         }
 
         System.out.println("Idade: ");
