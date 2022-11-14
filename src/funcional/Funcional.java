@@ -30,7 +30,7 @@ public class Funcional {
             }
             else if (opcao == 2) {
                 System.out.println("opcao 2");
-                calculaIMC();
+//                calculaIMC();
                 waitTime();
             }
             else if (opcao == 3) {
@@ -56,9 +56,13 @@ public class Funcional {
         } while (true);
     }
 
-    private void calculaIMC() {
-
-    }
+//    private void calculaIMC() {
+//        Scanner scanner  = new Scanner(System.in);
+//        System.out.println("Qual pessoa você deseja calcular o IMC? ");
+//        System.out.println("1 - Pesquisar por código;");
+//        System.out.println("2 - Pesquisar por nome.");
+//
+//    }
 
     private void waitTime(){
         try{
