@@ -70,44 +70,50 @@ public class Funcional {
        Scanner scanner  = new Scanner(System.in);
        System.out.println("Digite o seu nome!");
        String nome = scanner.next();
+       boolean achou = false;
        for(int i=0;i<pessoas.getPessoas().size();i++ ){
            if(pessoas.getPessoas().get(i).getNome().equalsIgnoreCase(nome)){
                 double resp = c.calculaIMC(pessoas.getPessoas().get(i).getPeso(), pessoas.getPessoas().get(i).getAltura());
-                System.out.println("O IMC de " + nome + "é " + resp);
+                System.out.println("O IMC de " + nome + " é " + resp);
+                achou = true;
                 break;
            }
-           else
-               System.out.println("O nome não foi achado na lista");
        }
+       if (!achou)
+           System.out.println("O nome não foi achado na lista");
   }
     private void calculaPesoIdeal() {
         Scanner scanner  = new Scanner(System.in);
         System.out.println("Digite o seu nome!");
         String nome = scanner.next();
+        boolean achou = false;
         for(int i=0;i<pessoas.getPessoas().size();i++ ){
             if(pessoas.getPessoas().get(i).getNome().equalsIgnoreCase(nome)){
                 double resp = c.pesoIdeal(pessoas.getPessoas().get(i).getSexo(), pessoas.getPessoas().get(i).getAltura());
                 System.out.println("O Peso ideal de " + nome + " é " + resp);
+                achou = true;
                 break;
             }
-            else
-                System.out.println("O nome não foi achado na lista");
         }
+        if (!achou)
+            System.out.println("O nome não foi achado na lista");
     }
 
     private void calculaTaxaDeGordura() {
         Scanner scanner  = new Scanner(System.in);
         System.out.println("Digite o seu nome!");
         String nome = scanner.next();
+        boolean achou = false;
         for(int i=0;i<pessoas.getPessoas().size();i++ ){
             if(pessoas.getPessoas().get(i).getNome().equalsIgnoreCase(nome)){
                 double resp = c.taxaDeGorduraCorporal(pessoas.getPessoas().get(i).getSexo(), pessoas.getPessoas().get(i).getIdade(),  pessoas.getPessoas().get(i).getPeso(), pessoas.getPessoas().get(i).getAltura());
                 System.out.println("A taxa de gordura de " + nome + " é " + resp);
+                achou = true;
                 break;
             }
-            else
-                System.out.println("O nome não foi achado na lista");
         }
+        if (!achou)
+            System.out.println("O nome não foi achado na lista");
     }
 
 
