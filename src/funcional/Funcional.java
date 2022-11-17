@@ -5,7 +5,6 @@ import util.ListaPessoas;
 import util.Pessoa;
 import util.Calculos;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Funcional {
