@@ -1,3 +1,6 @@
 Code,Nome,Sexo,Idade,Peso,Altura
-01,Alberto,m,45,90,1.80
-02,Roberta,f,30,65,1.70
+01,Alberto,m,45,90.0,1.8
+02,Roberta,f,30,65.0,1.7
+05,Zero,f,34,90.0,1.79
+70,Alemão,m,12,34.0,1.34
+90,Di Maira,m,40,60.0,1.8

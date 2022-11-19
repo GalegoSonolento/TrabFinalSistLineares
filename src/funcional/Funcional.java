@@ -58,6 +58,7 @@ public class Funcional {
             else if (opcao == 6) {
                 System.out.println("Volte sempre!");
                 scanner.close();
+                csv.geraCSV(pessoas.getPessoas());
                 break;
             }
             else{
@@ -148,8 +149,9 @@ public class Funcional {
             }
         } while (testeCode);
 
+        scanner.nextLine();
         System.out.println("Nome: ");
-        String nome = scanner.next();
+        String nome = scanner.nextLine();
 
         System.out.println("Sexo [M/F]: ");
         String sexo = scanner.next();
