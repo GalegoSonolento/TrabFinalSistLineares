@@ -2,7 +2,7 @@
 Trabalho final da ceadeira de sistemas lineares do segundo semestre de ciência da computação
 
 
-==-- Momtagem da classe Pessoa --==
+==-- Montagem da classe Pessoa --==
   É uma classe simples para a ciração de um objeto que será colocado dentro das listas para manipulação. Ele precisa de um toString para retornar a esquematização certa para colocar dentro do CSV (ou json)
   
 ==-- Montagem da classe ListaPessoa --==
