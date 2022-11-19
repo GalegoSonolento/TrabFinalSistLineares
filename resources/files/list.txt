@@ -1,0 +1,3 @@
+Code,Nome,Sexo,Idade,Peso,Altura
+01,Alberto,m,45,90,1.80
+02,Roberta,f,30,65,1.70

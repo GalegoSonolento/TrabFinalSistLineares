@@ -15,9 +15,4 @@ public class Ui {
         System.out.println("5 - Listar as pessoas e resultados dos cálculos;");
         System.out.println("6 - Sair;");
     }
-
-    public void opcoesDeBusca(){
-        System.out.println("Selecione o meio para pesquisa: ");
-        System.out.println("\t1 - Código");
-    }
 }

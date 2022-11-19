@@ -1,6 +1,7 @@
 package funcional;
 
 import ui.Ui;
+import util.LerPreencherCSV;
 import util.ListaPessoas;
 import util.Pessoa;
 import util.Calculos;
@@ -8,12 +9,14 @@ import util.Calculos;
 import java.util.Scanner;
 
 public class Funcional {
+    private LerPreencherCSV csv = new LerPreencherCSV();
     private final Ui ui = new Ui();
     ListaPessoas pessoas = new ListaPessoas();
     Calculos c = new Calculos();
 
     public void rodaPrograma(){
         Scanner scanner = new Scanner(System.in);
+        pessoas.setPessoas(csv.preencheLista(pessoas.getPessoas()));
         int opcao = 0;
         ui.telaIncial();
         do{
@@ -30,27 +33,25 @@ public class Funcional {
                 waitTime();
             }
             else if (opcao == 2) {
-                System.out.println("opcao 2");
                 calculaIMC();
                 waitTime();
             }
             else if (opcao == 3) {
-                System.out.println("opcao 3");
                 calculaPesoIdeal();
                 waitTime();
             }
             else if (opcao == 4){
-                System.out.println("opcao 4");
                 calculaTaxaDeGordura();
                 waitTime();
             }
             else if (opcao == 5) {
-                System.out.println("opcao 5");
                 for(int i=0;i<pessoas.getPessoas().size();i++ ){
+                    System.out.println("----------------------------------------------");
                     System.out.println("Nome: " + pessoas.getPessoas().get(i).getNome());
-                    System.out.println("IMC:" + c.calculaIMC(pessoas.getPessoas().get(i).getPeso(), pessoas.getPessoas().get(i).getAltura()));
+                    System.out.println("IMC: " + c.calculaIMC(pessoas.getPessoas().get(i).getPeso(), pessoas.getPessoas().get(i).getAltura()));
                     System.out.println("Peso Ideal: " +  c.pesoIdeal(pessoas.getPessoas().get(i).getSexo(), pessoas.getPessoas().get(i).getAltura()));
-                    System.out.println("Taxa de Gordura: " + c.taxaDeGorduraCorporal(pessoas.getPessoas().get(i).getSexo(), pessoas.getPessoas().get(i).getIdade(),  pessoas.getPessoas().get(i).getPeso(), pessoas.getPessoas().get(i).getAltura()) + "/n");
+                    System.out.println("Taxa de Gordura: " + c.taxaDeGorduraCorporal(pessoas.getPessoas().get(i).getSexo(), pessoas.getPessoas().get(i).getIdade(),  pessoas.getPessoas().get(i).getPeso(), pessoas.getPessoas().get(i).getAltura()));
+                    System.out.println("---------------------------------------------");
                 }
                 waitTime();
             }
@@ -67,52 +68,58 @@ public class Funcional {
 
    private void calculaIMC() {
        Scanner scanner  = new Scanner(System.in);
-       System.out.println("Digite o seu nome!");
-       String nome = scanner.next();
+       System.out.println("Digite o seu código: ");
+       String code = scanner.next();
+       String nome = "";
        boolean achou = false;
        for(int i=0;i<pessoas.getPessoas().size();i++ ){
-           if(pessoas.getPessoas().get(i).getNome().equalsIgnoreCase(nome)){
+           if(pessoas.getPessoas().get(i).getCode().equalsIgnoreCase(code)){
                 double resp = c.calculaIMC(pessoas.getPessoas().get(i).getPeso(), pessoas.getPessoas().get(i).getAltura());
+                nome = pessoas.getPessoas().get(i).getNome();
                 System.out.println("O IMC de " + nome + " é " + resp);
                 achou = true;
                 break;
            }
        }
        if (!achou)
-           System.out.println("O nome não foi achado na lista");
+           System.out.println("Código não encontrado no banco de dados!");
   }
     private void calculaPesoIdeal() {
         Scanner scanner  = new Scanner(System.in);
-        System.out.println("Digite o seu nome!");
-        String nome = scanner.next();
+        System.out.println("Digite o seu código: ");
+        String code = scanner.next();
+        String nome = "";
         boolean achou = false;
         for(int i=0;i<pessoas.getPessoas().size();i++ ){
-            if(pessoas.getPessoas().get(i).getNome().equalsIgnoreCase(nome)){
+            if(pessoas.getPessoas().get(i).getCode().equalsIgnoreCase(code)){
                 double resp = c.pesoIdeal(pessoas.getPessoas().get(i).getSexo(), pessoas.getPessoas().get(i).getAltura());
+                nome = pessoas.getPessoas().get(i).getNome();
                 System.out.println("O Peso ideal de " + nome + " é " + resp);
                 achou = true;
                 break;
             }
         }
         if (!achou)
-            System.out.println("O nome não foi achado na lista");
+            System.out.println("Código não encontrado no banco de dados!");
     }
 
     private void calculaTaxaDeGordura() {
         Scanner scanner  = new Scanner(System.in);
-        System.out.println("Digite o seu nome!");
-        String nome = scanner.next();
+        System.out.println("Digite o seu código: ");
+        String code = scanner.next();
+        String nome = "";
         boolean achou = false;
         for(int i=0;i<pessoas.getPessoas().size();i++ ){
-            if(pessoas.getPessoas().get(i).getNome().equalsIgnoreCase(nome)){
+            if(pessoas.getPessoas().get(i).getCode().equalsIgnoreCase(code)){
                 double resp = c.taxaDeGorduraCorporal(pessoas.getPessoas().get(i).getSexo(), pessoas.getPessoas().get(i).getIdade(),  pessoas.getPessoas().get(i).getPeso(), pessoas.getPessoas().get(i).getAltura());
+                nome = pessoas.getPessoas().get(i).getNome();
                 System.out.println("A taxa de gordura de " + nome + " é " + resp);
                 achou = true;
                 break;
             }
         }
         if (!achou)
-            System.out.println("O nome não foi achado na lista");
+            System.out.println("Código não encontrado no banco de dados!");
     }
 
 
@@ -122,12 +129,24 @@ public class Funcional {
         }catch(Exception ignored){}
     }
 
-    private void inserirPessoa(){
+    private void inserirPessoa() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Forneça seus dados: ");
 
         System.out.println("Código: ");
         String codigo = scanner.next();
+        boolean testeCode;
+        do {
+            testeCode = false;
+            for (Pessoa p1 : pessoas.getPessoas()) {
+                if (codigo.equalsIgnoreCase(p1.getCode())) {
+                    System.out.println("Código já utilizado! " +
+                            "\nDigite outro: ");
+                    codigo = scanner.next();
+                    testeCode = true;
+                }
+            }
+        } while (testeCode);
 
         System.out.println("Nome: ");
         String nome = scanner.next();
@@ -169,7 +188,7 @@ public class Funcional {
             } catch (Exception e) {
                 altura = -1;
             }
-            if (altura < 0 || altura > 5) System.out.println("Coloque uma altura válida");
+            if (altura < 0 || altura > 5) System.out.println("Coloque uma altura válida - altura dada em metros");
         } while (altura < 0 || altura > 5);
 
         Pessoa p1 = new Pessoa(codigo, nome, sexo, idade, peso, altura);
