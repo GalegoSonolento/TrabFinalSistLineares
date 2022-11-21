@@ -4,3 +4,6 @@ Code,Nome,Sexo,Idade,Peso,Altura
 05,Zero,f,34,90.0,1.79
 70,Alemão,m,12,34.0,1.34
 90,Di Maira,m,40,60.0,1.8
+69,Lorenzetti Thomas,m,19,76.0,1.84
+45,Guilherme Ronaldo,m,39,82.0,1.87
+09,Romelu Lukaku,m,29,103.0,1.91

@@ -5,13 +5,13 @@ import java.util.ArrayList;
 
 public class LerPreencherCSV {
     private String header;
-    private String path = "./resources/files/list.txt";
+    private static final String PATH = "./resources/files/list.txt";
 
     public ArrayList<Pessoa> preencheLista(ArrayList<Pessoa> list){
 
         header = "";
 
-        try (BufferedReader br = new BufferedReader(new FileReader(path))){
+        try (BufferedReader br = new BufferedReader(new FileReader(PATH))){
 
             String line = br.readLine();
             header = line;
@@ -36,7 +36,7 @@ public class LerPreencherCSV {
     }
 
     public void geraCSV(ArrayList<Pessoa> list){
-        try (BufferedWriter bw = new BufferedWriter(new FileWriter(path))){
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(PATH))){
 
             bw.write(header);
             for (Pessoa p : list){
